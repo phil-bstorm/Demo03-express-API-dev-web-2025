@@ -56,6 +56,10 @@ const userService = {
 
     return existingEmail;
   },
+  getAll: async () => {
+    const users = await db.User.findAll();
+    return users;
+  },
 };
 
 export default userService;
