@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import db from "../database/index.js";
 import {
   EmailAlreadyExistsError,
+  InvalidCredentialsError,
   UserTooYoungError,
 } from "../custom-errors/user.error.js";
 
@@ -32,6 +33,28 @@ const userService = {
 
     const newUser = await db.User.create(data);
     return newUser;
+  },
+  login: async (credentials) => {
+    const existingEmail = await db.User.findOne({
+      where: {
+        email: credentials.email,
+      },
+    });
+
+    if (!existingEmail) {
+      throw new InvalidCredentialsError();
+    }
+
+    const checkPassword = bcrypt.compareSync(
+      credentials.password,
+      existingEmail.password,
+    );
+
+    if (!checkPassword) {
+      throw new InvalidCredentialsError();
+    }
+
+    return existingEmail;
   },
 };
 
