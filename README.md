@@ -11,3 +11,4 @@ Petit application pour la démo sur les APIs utilisant Express
 5. Creer la base de donnée (CREATE DATABASE)
 6. Mise en place de base de la web API (src/index.js)
 7. Route d'enregistrement (+ validation de formulaire)
+8. Gérer les erreurs (middleware d'erreur et erreurs custom)
