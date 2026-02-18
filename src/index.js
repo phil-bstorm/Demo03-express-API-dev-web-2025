@@ -6,6 +6,7 @@ import morgan from "morgan";
 import { errorHandler } from "./middlewares/error.middleware.js";
 
 import db from "./database/index.js";
+import router from "./routers/index.js";
 
 const { APP_PORT } = process.env;
 
@@ -22,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(morgan("dev"));
 
-// TODO routing
+app.use(router);
 
 app.use(errorHandler);
 
