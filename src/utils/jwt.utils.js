@@ -14,3 +14,7 @@ export const generateToken = (user) => {
 
   return token;
 };
+
+export const decodeToken = (token) => {
+  return jwt.verify(token, JWT_SECRET);
+};

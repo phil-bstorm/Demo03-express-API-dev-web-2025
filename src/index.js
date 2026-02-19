@@ -7,6 +7,7 @@ import { errorHandler } from "./middlewares/error.middleware.js";
 
 import db from "./database/index.js";
 import router from "./routers/index.js";
+import { authentification } from "./middlewares/auth.middleware.js";
 
 const { APP_PORT } = process.env;
 
@@ -23,6 +24,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(morgan("dev"));
+
+app.use(authentification);
 
 app.use(router);
 
