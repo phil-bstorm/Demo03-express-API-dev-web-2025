@@ -43,6 +43,13 @@ const concertController = {
 
     res.status(200).json({ data: dtos });
   },
+
+  delete: async (req, res) => {
+    const concertId = req.params.id;
+    await concertService.delete(concertId, req.user);
+
+    res.status(204).send();
+  },
 };
 
 export default concertController;

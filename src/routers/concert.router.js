@@ -25,4 +25,10 @@ concertRouter.get(
   concertController.getAll,
 );
 
+concertRouter.delete(
+  "/:id",
+  connected(["admin", "organizer"]),
+  concertController.delete,
+);
+
 export default concertRouter;

@@ -6,10 +6,19 @@ export class DateInThePastError extends Error {
   }
 }
 
+// TODO Fix le nom
 export class OrganizerDoesNotExist extends Error {
   statusCode = 400;
 
   constructor(id) {
     super(`The organizer with the ID "${id}" doesnt exist.`);
+  }
+}
+
+export class DontOrganizeConcertError extends Error {
+  statusCode = 403;
+
+  constructor() {
+    super(`You don't have the right to delete this concert`);
   }
 }

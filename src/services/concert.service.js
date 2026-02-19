@@ -72,6 +72,20 @@ const concertService = {
     });
     return concerts;
   },
+  delete: async (id, requester) => {
+    const concert = await db.Concert.findByPk(id);
+
+    if (requester.role !== "admin") {
+      if (concert.organizerId !== requester.id) {
+        throw new DontOrganizeConcertError();
+      }
+    }
+
+    // if (concert) {
+    //   await concert.destroy();
+    // }
+    await concert?.destroy();
+  },
 };
 
 export default concertService;
